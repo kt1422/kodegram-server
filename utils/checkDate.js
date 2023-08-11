@@ -27,8 +27,15 @@ const checkMDY = (createAt) =>{
     return mdy;
 }
 
+const convertTZ = (date, tzString) => {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+}
+
 const chatDate = (createAt) => {
-    const dateCreated = new Date(createAt);
+    const dateCreated = convertTZ(createAt, "Asia/Manila");
+    // console.log(createAt);
+    // console.log(dateCreated);
+    // console.log("--------------")
     const now = new Date();
     const diff = (now.getTime() - dateCreated.getTime()) / 1000;
 
