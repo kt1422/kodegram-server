@@ -30,8 +30,8 @@ const server = app.listen(port, ()=>{
 
 const io = socket(server, {
     cors: {
-        // origin: "https://kodegram.devph.space",
-        origin: "http://localhost:5173",
+        origin: "https://kodegram.devph.space",
+        // origin: "http://localhost:5173",
         credentials: true
     }
 });
