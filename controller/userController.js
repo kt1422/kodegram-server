@@ -11,7 +11,7 @@ const user_get = async (req, res) => {
 	try {
         const userId = req.getUser.id;
         if(userId){
-            const rawUsers = await User.find({ _id: { $ne: userId } });
+            const rawUsers = await User.find({ _id: { $ne: userId }, verified: true });
             const allUsers = [];
             for(let user of rawUsers) {
                 let btnFollow = "Disabled";
