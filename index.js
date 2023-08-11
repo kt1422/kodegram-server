@@ -18,6 +18,12 @@ app.use(cors());
 dbConnect();
 
 //routes
+app.use('/', function (req, res, next) {
+    if (req.headers["access-control-request-private-network"]) {
+        res.setHeader("access-control-allow-private-network", "true");
+    }
+    next(null);
+})
 app.use('/user', userRouter);
 app.use('/post', postRouter);
 app.use('/chat', chatRouter);
