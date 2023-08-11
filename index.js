@@ -13,17 +13,15 @@ const socket = require("socket.io");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Private-Network", "true")
+    next();
+});
 
 //connect and check db connection
 dbConnect();
 
 //routes
-app.use('/', function (req, res, next) {
-    if (req.headers["access-control-request-private-network"]) {
-        res.setHeader("access-control-allow-private-network", "true");
-    }
-    next(null);
-})
 app.use('/user', userRouter);
 app.use('/post', postRouter);
 app.use('/chat', chatRouter);
